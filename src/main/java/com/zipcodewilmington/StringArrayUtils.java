@@ -2,8 +2,10 @@ package com.zipcodewilmington;
 
 import com.sun.tools.javac.util.ArrayUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by leon on 1/29/18.
@@ -78,10 +80,8 @@ public class StringArrayUtils {
                 return false;
             }
             j--;
-
         }
             return true;
-
     }
 
     /**
@@ -90,8 +90,26 @@ public class StringArrayUtils {
      */ // TODO
     public static boolean isPangramic(String[] array) {
 
+        //String s = "";
+        boolean result = true;
+        int count = 0;
 
-        return false;
+        // Need to work on this more. Need to make sure we loop all the alphabets.
+        // for (int j = 0; j < array.length; j++)
+        // {
+        //   s += array[j];
+        // }
+
+        for (int i = 0; i < array.length;  i++) {
+            if (array[i].contains("z") || array[i].contains("Z")) {
+
+                count++;
+            }
+        }
+        if (count == 0) {
+            result = false;
+        }
+        return result;
     }
 
     /**
@@ -101,8 +119,13 @@ public class StringArrayUtils {
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
 
-
-        return 0;
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -112,8 +135,10 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
 
-
-        return null;
+        List<String> list = new ArrayList<String>(Arrays.asList(array));
+        list.remove(valueToRemove);
+        array = list.toArray(new String[0]);
+        return array;
     }
 
     /**
@@ -123,7 +148,18 @@ public class StringArrayUtils {
     public static String[] removeConsecutiveDuplicates(String[] array) {
 
 
-        return null;
+        ArrayList<String> aList = new ArrayList();
+
+        for (int i = 0; i < array.length - 1; i++)
+        {
+            if (!array[i].equals(array[i + 1])) {
+                //array1[j] = array[i];
+                aList.add(array[i]);
+               // j++;
+            }
+        }
+        aList.add(array[array.length-1]);
+        return aList.toArray(new String[0]);
     }
 
     /**
@@ -131,6 +167,7 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
+
 
 
         return null;
