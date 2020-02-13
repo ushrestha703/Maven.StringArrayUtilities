@@ -135,11 +135,28 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
 
-        List<String> list = new ArrayList<String>(Arrays.asList(array));
-        list.remove(valueToRemove);
-        array = list.toArray(new String[0]);
-        return array;
-    }
+
+            if (array == null) {
+                return null;
+            } else if (array.length <= 0) {
+                return array;
+            } else {
+                String[] output = new String[array.length - 1];
+                int count = 0;
+                for (String i : array) {
+                    if (!i.equals(valueToRemove)) {
+                        output[count++] = i;
+                    }
+                }
+                return output;
+            }
+        }
+
+        //List<String> list = new ArrayList<String>(Arrays.asList(array));
+        //list.remove(valueToRemove);
+        //array = list.toArray(new String[0]);
+       // return array;
+
 
     /**
      * @param array array of chars
@@ -147,15 +164,12 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
 
-
         ArrayList<String> aList = new ArrayList();
 
         for (int i = 0; i < array.length - 1; i++)
         {
             if (!array[i].equals(array[i + 1])) {
-                //array1[j] = array[i];
                 aList.add(array[i]);
-               // j++;
             }
         }
         aList.add(array[array.length-1]);
@@ -168,10 +182,59 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
 
+        ArrayList<String> aList = new ArrayList();
+            int count = 0;
+            //String temp = "";
+            String temp = array[0];
+            aList.add(temp);
+
+        for (int i = 1; i < array.length ; i++) {
+            if (!array[i].equals(temp)) {
+
+                temp = array[i];
+                aList.add(array[i]);
+
+                count++;
+            }
+            else
+            {aList.set(count, aList.get(count)+ temp);
+            }
+        }
+        //aList.add(array[array.length - 1]);
+
+        return aList.toArray(new String[0]);
 
 
-        return null;
+
+
+
+
+
+
+
+
+        /* int count = 0;
+        for ( int i = array.length - 1; i >= 0; i --)
+        {
+            if (array[i].equals(array[i-2]))
+            {
+               array[i] += array[i];
+               array[i] = null;
+               count++;
+            }
+        }
+
+        for (int j = 0; j < count; j++)
+        {
+            if (!array[j].equals(null))
+            {
+
+            }
+        }
+
+*/
+
+
     }
-
 
 }
