@@ -90,27 +90,40 @@ public class StringArrayUtils {
      */ // TODO
     public static boolean isPangramic(String[] array) {
 
-        //String s = "";
-        boolean result = true;
-        int count = 0;
+        String input = Arrays.toString(array).toLowerCase();
+        int j = 0;
+        for (char i = 'a'; i <= 'z'; i++) {
+            if (input.indexOf(i) == -1){
+                j++;
+            }
+        }
 
+        return j == 0;
+    }
+
+
+        //String s = "";
         // Need to work on this more. Need to make sure we loop all the alphabets.
         // for (int j = 0; j < array.length; j++)
         // {
         //   s += array[j];
         // }
 
-        for (int i = 0; i < array.length;  i++) {
-            if (array[i].contains("z") || array[i].contains("Z")) {
 
-                count++;
-            }
-        }
-        if (count == 0) {
-            result = false;
-        }
-        return result;
-    }
+
+        //boolean result = true;
+        //int count = 0;
+        //for (int i = 0; i < array.length;  i++) {
+           // if (array[i].contains("z") || array[i].contains("Z")) {
+
+           //     count++;
+         //   }
+       // }
+        //if (count == 0) {
+         //   result = false;
+        //}
+        //return result;
+    //}
 
     /**
      * @param array array of String objects
@@ -183,58 +196,29 @@ public class StringArrayUtils {
     public static String[] packConsecutiveDuplicates(String[] array) {
 
         ArrayList<String> aList = new ArrayList();
-            int count = 0;
-            //String temp = "";
-            String temp = array[0];
-            aList.add(temp);
+        int count = 0;
+        //String temp = "";
+        String temp = array[0];
+        aList.add(temp);
 
-        for (int i = 1; i < array.length ; i++) {
+        for (int i = 1; i < array.length; i++) {
             if (!array[i].equals(temp)) {
 
                 temp = array[i];
                 aList.add(array[i]);
 
                 count++;
-            }
-            else
-            {aList.set(count, aList.get(count)+ temp);
+            } else {
+                aList.set(count, aList.get(count) + temp);
             }
         }
         //aList.add(array[array.length - 1]);
 
         return aList.toArray(new String[0]);
-
-
-
-
-
-
-
-
-
-
-        /* int count = 0;
-        for ( int i = array.length - 1; i >= 0; i --)
-        {
-            if (array[i].equals(array[i-2]))
-            {
-               array[i] += array[i];
-               array[i] = null;
-               count++;
-            }
-        }
-
-        for (int j = 0; j < count; j++)
-        {
-            if (!array[j].equals(null))
-            {
-
-            }
-        }
-
-*/
-
-
     }
-
 }
+
+
+
+
+
